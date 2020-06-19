@@ -1,0 +1,5 @@
+.idea/
+bin/
+venv/
+__pycache__
+m_spec*.log

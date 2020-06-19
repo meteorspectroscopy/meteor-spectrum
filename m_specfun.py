@@ -22,7 +22,8 @@ from scipy.ndimage import map_coordinates
 from skimage import io, img_as_float
 from skimage import transform as tf
 
-ctypes.windll.user32.SetProcessDPIAware()   # Set unit of GUI to pixels
+if platform.system() == 'Windows':
+    ctypes.windll.user32.SetProcessDPIAware()   # Set unit of GUI to pixels
 
 version = '0.9.18'
 today = date.today()
@@ -132,7 +133,7 @@ def read_configuration(conf, par_dict, res_dict, opt_dict):
                         'win_width', 'win_height', 'win_x', 'win_y', 'calc_off_x', 'calc_off_y', 'setup_off_x',
                         'setup_off_y'):
                     opt_dict[key] = int(config['Options'][key])
-                elif key in ('debug', 'fit-report', 'scale_win2ima', 'scale_ima2win', 'colorflag', 'bob'):
+                elif key in ('debug', 'fit-report', 'scale_win2ima', 'scale_ima2win', 'bob'):
                     opt_dict[key] = bool(int(config['Options'][key]))
                 elif key in ('zoom', 'i_min', 'i_max'):
                     opt_dict[key] = float(config['Options'][key])
